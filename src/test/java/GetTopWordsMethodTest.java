@@ -2,37 +2,71 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
+
 public class GetTopWordsMethodTest {
 
     @Test
-    public void metodReturnNTopWordsForStringWithSpesialSimbols() throws Exception {
+    public void methodReturnsNTopWordsForStringWithSpesialSimbols() throws Exception {
 
-        Text text = new Text("## , ,art-, a, @kot! @#");
+        Text text = new Text("## ,123 яяя" + "\n" + ",art-, a, @kot! @#");
         String[] result = text.getTopWords(3);
         String[] expectedResult = {"a", "art", "kot"};
 
-        Assert.assertEquals(result, expectedResult);
+        assertEquals(result, expectedResult);
     }
 
     @Test
-    public void metodReturnNTopWordsForStringWithApperCaseSimbols() throws Exception {
+    public void methodReturnsNTopWordsForStringWithApperCasesSimbols() throws Exception {
 
-        Text text = new Text("## , Art, a, Kot! @#");
+        Text text = new Text("## , Art, a," + "Kot! @#");
         String[] result = text.getTopWords(3);
         String[] expectedResult = {"a", "art", "kot"};
 
-        Assert.assertEquals(result, expectedResult);
+        assertEquals(result, expectedResult);
     }
 
     @Test
-    public void metodReturnNTopWordsForStringWitSameWords() throws Exception {
+    public void methodReturnsUniqueNTopWordsForStringWitSameWords() throws Exception {
 
-        Text text = new Text("## , Art, art, Kot!, begemot, BEgimot @#");
+        Text text = new Text("##, Art, art, Kot!,a begemot, BEgimot @#");
         String[] result = text.getTopWords(3);
-        String[] expectedResult = {"a", "art", "kot"};
+        String[] expectedResult = {"a", "art", "begemot"};
 
-        Assert.assertEquals(result, expectedResult);
+        assertEquals(result, expectedResult);
     }
+
+    @Test
+    public void methodReturnsEmptyArrayIfNisZero() throws Exception {
+
+        Text text = new Text("begemot art a");
+        String[] result = text.getTopWords(0);
+        String[] expectedResult = {};
+
+        assertEquals(result, expectedResult);
+    }
+
+    @Test
+    public void methodReturnsEmptyArrayIfNIsOutOfBounds() throws Exception {
+
+        Text text = new Text("begemot art a");
+        String[] result = text.getTopWords(-1);
+        String[] expectedResult = {};
+
+        assertEquals(result, expectedResult);
+    }
+
+    @Test
+    public void methodReturnsEmptyArrayIfTextIsEmpty() throws Exception {
+
+        Text text = new Text("");
+        String[] result = text.getTopWords(3);
+        String[] expectedResult = {};
+
+        assertEquals(result, expectedResult);
+    }
+
+
 }
 
 
