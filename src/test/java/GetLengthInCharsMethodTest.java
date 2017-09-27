@@ -1,6 +1,7 @@
-import org.junit.Assert;
+
 import org.junit.Test;
 
+import static org.junit.Assert.assertEquals;
 
 
 public class GetLengthInCharsMethodTest {
@@ -11,7 +12,7 @@ public class GetLengthInCharsMethodTest {
         int result = text.getLengthInChars();
         int expectedResult = 5;
 
-        Assert.assertEquals(result, expectedResult);
+        assertEquals(result, expectedResult);
     }
     @Test
     public void getLenghtMethodReturnsCorrectLengthFotStringWithSameWords() throws Exception {
@@ -19,7 +20,7 @@ public class GetLengthInCharsMethodTest {
         int result = text.getLengthInChars();
         int expectedResult = 9;
 
-        Assert.assertEquals(result, expectedResult);
+        assertEquals(result, expectedResult);
     }
 
     @Test
@@ -28,14 +29,14 @@ public class GetLengthInCharsMethodTest {
         int result = text.getLengthInChars();
         int expectedResult = 7;
 
-        Assert.assertEquals(result, expectedResult);
+        assertEquals(result, expectedResult);
     }
     @Test
     public void getLenghtMethodReturnsZeroIfStringIsEmpty() throws Exception {
         Text text = new Text("");
         int result = text.getLengthInChars();
         int expectedResult = 0;
-        Assert.assertEquals(result, expectedResult);
+        assertEquals(result, expectedResult);
     }
 
     @Test
@@ -43,6 +44,6 @@ public class GetLengthInCharsMethodTest {
         Text text = new Text(" ");
         int result = text.getLengthInChars();
         int expectedResult = 0;
-        Assert.assertEquals(result, expectedResult);
+        assertEquals(result, expectedResult);
     }
 }

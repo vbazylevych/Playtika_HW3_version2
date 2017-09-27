@@ -1,8 +1,5 @@
-
-import com.google.common.collect.Sets;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 
@@ -14,37 +11,19 @@ public class Text {
         this.text = text;
     }
 
-    private String clearText(String dirtyText) {
-        String clearText = dirtyText.toLowerCase().replaceAll("[^A-Za-z]", " ");
-        return clearText;
-    }
-
-    private String[] getArrayOfUniqueWords(String string) {
-        String[] arrayOfSptiledStrings = getArrayOfSplitedWords(string);
-
-        HashSet<String> setOfStrings = Sets.newHashSet(arrayOfSptiledStrings);
-        setOfStrings.remove("");
-
-        String[] clearArray = setOfStrings.toArray(new String[setOfStrings.size()]);
-        return clearArray;
-    }
-
-    private String[] getArrayOfSplitedWords(String string) {
-        return string.split(" ");
-    }
-
     public String[] getTopWords(int n) {
 
-        String[] clearArray = getArrayOfUniqueWords(clearText(text));
-        Arrays.sort(clearArray);
+        String[] arrayOfUniqueWords = TextUtils.getArrayOfUniqueWords(TextUtils.clearText(text));
+        Arrays.sort(arrayOfUniqueWords);
         String[] strings = {};
-        if (clearArray.length < n){
-            System.out.println("Incorrect N: array has only " + clearArray.length + " elements");
-            return strings;
 
+        if (arrayOfUniqueWords.length < n) {
+            System.out.println("Incorrect N: array has only " + arrayOfUniqueWords.length + " elements");
+            return strings;
         }
+
         try {
-            strings = Arrays.copyOfRange(clearArray, 0, n);
+            strings = Arrays.copyOfRange(arrayOfUniqueWords, 0, n);
         } catch (Exception e) {
             System.out.println("Incorrect N: " + e.getMessage());
         } finally {
@@ -53,7 +32,7 @@ public class Text {
     }
 
     public Map<String, Integer> getWordFrequencies() {
-        String[] splitedArray = getArrayOfSplitedWords(clearText(text));
+        String[] splitedArray = TextUtils.getArrayOfSplitedWords(TextUtils.clearText(text));
 
         Map<String, Integer> resultMap = new HashMap<String, Integer>();
 
@@ -68,13 +47,13 @@ public class Text {
         return resultMap;
     }
 
-   public int getLengthInChars(){
-       String[] splitedArray = getArrayOfSplitedWords(clearText(text));
-       int sum = 0;
+    public int getLengthInChars() {
+        String[] splitedArray = TextUtils.getArrayOfSplitedWords(TextUtils.clearText(text));
+        int sum = 0;
 
-       for (String s : splitedArray) {
-           sum = sum + s.length();
-       }
-       return sum;
-   }
+        for (String s : splitedArray) {
+            sum = sum + s.length();
+        }
+        return sum;
+    }
 }
