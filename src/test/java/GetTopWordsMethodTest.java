@@ -1,11 +1,12 @@
 
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 
 public class GetTopWordsMethodTest {
 
     @Test
-    public void methodReturnsNTopWordsForStringWithSpesialSimbols() throws Exception {
+    public void methodReturnsNTopWordsForStringWithSpesialSimbols() {
 
         Text text = new Text("## ,123 яяя" + "\n" + ",art-, a, @kot! @#");
         String[] result = text.getTopWords(3);
@@ -15,7 +16,7 @@ public class GetTopWordsMethodTest {
     }
 
     @Test
-    public void methodReturnsNTopWordsForStringWithApperCasesSimbols() throws Exception {
+    public void methodReturnsNTopWordsForStringWithApperCasesSimbols() {
 
         Text text = new Text("## , Art, a," + "Kot! @#");
         String[] result = text.getTopWords(3);
@@ -25,7 +26,7 @@ public class GetTopWordsMethodTest {
     }
 
     @Test
-    public void methodReturnsUniqueNTopWordsForStringWitSameWords() throws Exception {
+    public void methodReturnsUniqueNTopWordsForStringWitSameWords() {
 
         Text text = new Text("##, Art, art, Kot!,a begemot, BEgimot @#");
         String[] result = text.getTopWords(3);
@@ -35,7 +36,7 @@ public class GetTopWordsMethodTest {
     }
 
     @Test
-    public void methodReturnsEmptyArrayIfNisZero() throws Exception {
+    public void methodReturnsEmptyArrayIfNisZero() {
 
         Text text = new Text("begemot art a");
         String[] result = text.getTopWords(0);
@@ -45,7 +46,7 @@ public class GetTopWordsMethodTest {
     }
 
     @Test
-    public void methodReturnsEmptyArrayIfNIsOutOfBounds() throws Exception {
+    public void methodReturnsEmptyArrayIfNIsOutOfBounds() {
 
         Text text = new Text("begemot art a");
         String[] result = text.getTopWords(-1);
@@ -55,7 +56,7 @@ public class GetTopWordsMethodTest {
     }
 
     @Test
-    public void methodReturnsEmptyArrayIfTextIsEmpty() throws Exception {
+    public void methodReturnsEmptyArrayIfTextIsEmpty() {
 
         Text text = new Text("");
         String[] result = text.getTopWords(3);
