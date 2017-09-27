@@ -1,8 +1,5 @@
 
 import com.google.common.collect.Sets;
-import com.sun.javafx.collections.MappingChange;
-
-
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -71,5 +68,13 @@ public class Text {
         return resultMap;
     }
 
+   public int getLengthInChars(){
+       String[] splitedArray = getArrayOfSplitedWords(clearText(text));
+       int sum = 0;
 
+       for (String s : splitedArray) {
+           sum = sum + s.length();
+       }
+       return sum;
+   }
 }
