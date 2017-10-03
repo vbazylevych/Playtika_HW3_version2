@@ -1,10 +1,20 @@
+import com.sun.xml.internal.fastinfoset.util.StringArray;
+
 import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.DirectoryStream;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
+
+
+/*
         System.out.println("Dratuti!");
 
 
@@ -28,5 +38,51 @@ try(FileInputStream stream = new FileInputStream(file)){
     }
 } catch (FileNotFoundException e){
 }
+
+*/
+
+
+        System.out.println("Enter absolute path to directory and press Enter OR  enter kot in order to continue with default directory");
+
+        Scanner scanner = new Scanner(System.in);
+        String directoryPath = scanner.nextLine();
+
+        Path directory = Paths.get(directoryPath);
+        StringBuilder stringBuilder = new StringBuilder();
+
+        if (directoryPath == "def") {
+            directory = Paths.get("kot");
+        }
+        String newLine = "";
+        if (Files.exists(directory) && Files.isDirectory(directory)) {
+            DirectoryStream<Path> files = Files.newDirectoryStream(directory);
+
+            for (Path file : files) {
+
+                try (BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(
+                                new FileInputStream(file.toString()), StandardCharsets.UTF_8))) {
+                    String line;
+
+                    while ((line = reader.readLine()) != null) {
+
+                        newLine = stringBuilder.append(line).append(" ").toString();
+
+
+                    }
+
+                } catch (IOException e) {
+                    System.out.println("nexoroshii put'");
+
+                }
+
+                System.out.println(newLine);
+                stringBuilder = new StringBuilder();
+            }
+        } else {
+            System.out.println("It isn't directory");
+        }
+
+
     }
 }
