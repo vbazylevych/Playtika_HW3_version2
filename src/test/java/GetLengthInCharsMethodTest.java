@@ -7,26 +7,26 @@ import static org.junit.Assert.assertEquals;
 public class GetLengthInCharsMethodTest {
 
     @Test
-    public void getLenghtMethodReturnsCorrectLengthFotStringWithSpecificSymbols() {
-        Text text = new Text("ko kot, !" + "\n");
+    public void stringWithSpecificSymbols() {
+        Text text = new Text("kot,% #@ !" + "\n");
         int result = text.getLengthInChars();
-        int expectedResult = 5;
+        int expectedResult = 3;
 
         assertEquals(result, expectedResult);
     }
 
     @Test
-    public void getLenghtMethodReturnsCorrectLengthFotStringWithSameWords() {
-        Text text = new Text("kot kot kot, !" + "\n");
+    public void stringWithSameWords() {
+        Text text = new Text("kot kot");
         int result = text.getLengthInChars();
-        int expectedResult = 9;
+        int expectedResult = 6;
 
         assertEquals(result, expectedResult);
     }
 
     @Test
-    public void getLenghtMethodReturnsCorrectLengthFotStringWithUpperCases() {
-        Text text = new Text("Kot KROT !" + "\n");
+    public void stringWithUpperCases() {
+        Text text = new Text("Kot KROT");
         int result = text.getLengthInChars();
         int expectedResult = 7;
 
@@ -34,7 +34,7 @@ public class GetLengthInCharsMethodTest {
     }
 
     @Test
-    public void getLenghtMethodReturnsZeroIfStringIsEmpty() {
+    public void stringIsEmpty() {
         Text text = new Text("");
         int result = text.getLengthInChars();
         int expectedResult = 0;
@@ -42,10 +42,17 @@ public class GetLengthInCharsMethodTest {
     }
 
     @Test
-    public void getLenghtMethodReturnsZeroIfStringWithoutWords() {
+    public void stringWithoutWords() {
         Text text = new Text(" ");
         int result = text.getLengthInChars();
         int expectedResult = 0;
         assertEquals(result, expectedResult);
     }
+    @Test(expected = NullPointerException.class)
+    public void stringWithNull() {
+        Text text = new Text(null);
+        text.getLengthInChars();
+    }
+
+
 }

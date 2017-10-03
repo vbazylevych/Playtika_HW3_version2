@@ -1,60 +1,21 @@
-import com.sun.xml.internal.fastinfoset.util.StringArray;
-
 import java.io.*;
 import java.nio.charset.StandardCharsets;
-import java.nio.file.DirectoryStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.List;
-import java.util.Scanner;
+import java.nio.file.*;
+
 
 public class Main {
 
     public static void main(String[] args) throws IOException {
 
 
-/*
-        System.out.println("Dratuti!");
+        Path directory = Paths.get("kot");
 
-
-        //Method[] metods = Text.class.getDeclaredAnnotation()
-
-        File file = new File("text.txt");
-
-     //   InputStream stream = new FileInputStream(file);
-
-       // Reader reader = new Reader();
-try(FileInputStream stream = new FileInputStream(file)){
-
-    //File Utils FROM APACHE COMMON
-
-
-        Reader inputStreamReader = new InputStreamReader(new FileInputStream(file));
-    List<String> strings = Files.readAllLines(file.toPath());
-    for (String line : strings) {
-        System.out.println(line);
-
-    }
-} catch (FileNotFoundException e){
-}
-
-*/
-
-
-        System.out.println("Enter absolute path to directory and press Enter OR  enter kot in order to continue with default directory");
-
-        Scanner scanner = new Scanner(System.in);
-        String directoryPath = scanner.nextLine();
-
-        Path directory = Paths.get(directoryPath);
-        StringBuilder stringBuilder = new StringBuilder();
-
-        if (directoryPath == "def") {
-            directory = Paths.get("kot");
-        }
-        String newLine = "";
         if (Files.exists(directory) && Files.isDirectory(directory)) {
+
+            StringBuilder stringBuilder = new StringBuilder();
+            String oneLineText = "";
+            int generalSum = 0;
+
             DirectoryStream<Path> files = Files.newDirectoryStream(directory);
 
             for (Path file : files) {
@@ -66,23 +27,25 @@ try(FileInputStream stream = new FileInputStream(file)){
 
                     while ((line = reader.readLine()) != null) {
 
-                        newLine = stringBuilder.append(line).append(" ").toString();
-
-
+                        oneLineText = stringBuilder.append(line).append(" ").toString();
                     }
 
+                    TextUtils.printFileAtributes(file);
+                    int oneFileSum = TextUtils.getOneFileSum(oneLineText);
+                    generalSum = generalSum + oneFileSum;
+                    System.out.println("Sum of frequency for file " + file.getFileName() + " -- " + oneFileSum + "\n");
+                    stringBuilder = new StringBuilder();
                 } catch (IOException e) {
-                    System.out.println("nexoroshii put'");
+                    System.out.println("I cant find such directory :(");
 
                 }
 
-                System.out.println(newLine);
-                stringBuilder = new StringBuilder();
             }
+            System.out.println("Sum of frequency for ALL files:  " + generalSum);
         } else {
             System.out.println("It isn't directory");
         }
-
-
     }
+
+
 }

@@ -82,7 +82,7 @@ public class GetWordFrequenciesMethodTest {
     }
 
 
-@Test (expected = IllegalArgumentException.class)
+@Test (expected = NullPointerException.class)
     public void nullTest( ){
         Text text = new Text(null);
          text.getWordFrequencies();

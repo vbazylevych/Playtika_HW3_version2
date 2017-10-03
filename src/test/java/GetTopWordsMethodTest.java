@@ -6,7 +6,7 @@ import static org.junit.Assert.assertEquals;
 public class GetTopWordsMethodTest {
 
     @Test
-    public void methodReturnsNTopWordsForStringWithSpesialSimbols() {
+    public void stringWithSpesialSimbols() {
 
         Text text = new Text("## ,123 яяя" + "\n" + ",art-, a, @kot! @#");
         String[] result = text.getTopWords(3);
@@ -16,9 +16,9 @@ public class GetTopWordsMethodTest {
     }
 
     @Test
-    public void methodReturnsNTopWordsForStringWithApperCasesSimbols() {
+    public void stringWithApperCasesSimbols() {
 
-        Text text = new Text("## , Art, a," + "Kot! @#");
+        Text text = new Text(" a ART Kot");
         String[] result = text.getTopWords(3);
         String[] expectedResult = {"a", "art", "kot"};
 
@@ -26,17 +26,17 @@ public class GetTopWordsMethodTest {
     }
 
     @Test
-    public void methodReturnsUniqueNTopWordsForStringWitSameWords() {
+    public void stringWitSameWords() {
 
-        Text text = new Text("##, Art, art, Kot!,a begemot, BEgimot @#");
-        String[] result = text.getTopWords(3);
-        String[] expectedResult = {"a", "art", "begemot"};
+        Text text = new Text("art art kot kot");
+        String[] result = text.getTopWords(2);
+        String[] expectedResult = {"art", "kot"};
 
         assertEquals(result, expectedResult);
     }
 
     @Test
-    public void methodReturnsEmptyArrayIfNisZero() {
+    public void zeroN() {
 
         Text text = new Text("begemot art a");
         String[] result = text.getTopWords(0);
@@ -46,7 +46,7 @@ public class GetTopWordsMethodTest {
     }
 
     @Test
-    public void methodReturnsEmptyArrayIfNIsOutOfBounds() {
+    public void outOfBoundsN() {
 
         Text text = new Text("begemot art a");
         String[] result = text.getTopWords(-1);
@@ -56,7 +56,7 @@ public class GetTopWordsMethodTest {
     }
 
     @Test
-    public void methodReturnsEmptyArrayIfTextIsEmpty() {
+    public void emptyText() {
 
         Text text = new Text("");
         String[] result = text.getTopWords(3);
@@ -64,6 +64,16 @@ public class GetTopWordsMethodTest {
 
         assertEquals(result, expectedResult);
     }
+    @Test(expected = NullPointerException.class)
+    public void nullText() {
+
+        Text text = new Text(null);
+        String[] result = text.getTopWords(3);
+        String[] expectedResult = {};
+
+        assertEquals(result, expectedResult);
+    }
+
 
 
 }
