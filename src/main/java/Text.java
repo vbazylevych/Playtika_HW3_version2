@@ -31,6 +31,7 @@ public class Text {
         }
     }
 
+
     public Map<String, Integer> getWordFrequencies() {
         String[] splitedArray = TextUtils.getArrayOfSplitedWords(TextUtils.clearText(text));
 
@@ -55,5 +56,10 @@ public class Text {
             sum = sum + s.length();
         }
         return sum;
+    }
+
+
+    static <T extends Text> void calculteSalary(){
+
     }
 }
