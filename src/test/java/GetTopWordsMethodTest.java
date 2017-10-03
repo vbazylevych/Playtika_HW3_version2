@@ -64,6 +64,7 @@ public class GetTopWordsMethodTest {
 
         assertEquals(result, expectedResult);
     }
+
     @Test(expected = NullPointerException.class)
     public void nullText() {
 
@@ -73,8 +74,6 @@ public class GetTopWordsMethodTest {
 
         assertEquals(result, expectedResult);
     }
-
-
 
 }
 

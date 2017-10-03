@@ -19,9 +19,8 @@ import static org.junit.Assert.assertThat;
 public class GetWordFrequenciesMethodTest {
 
 
-
     @Test()
-    public void getWordFrequenciesReturnsCorrectNumbersOfWordsForStringWithSpecificSymbols() {
+    public void stringWithSpecificSymbols() {
         Text text = new Text("kot ^   ...//%sema, ,,");
         Map<String, Integer> expectedMap = new HashMap<String, Integer>();
         expectedMap.put("kot", 1);
@@ -31,8 +30,8 @@ public class GetWordFrequenciesMethodTest {
     }
 
     @Test
-    public void getWordFrequenciesReturnsCorrectNumbersOfWordsForStringWithSameWords() {
-        Text text = new Text("kot kot ^   %sema, ,,");
+    public void stringWithSameWords() {
+        Text text = new Text("kot kot sema");
         Map<String, Integer> expectedMap = new HashMap<String, Integer>();
         expectedMap.put("kot", 2);
         expectedMap.put("sema", 1);
@@ -41,8 +40,8 @@ public class GetWordFrequenciesMethodTest {
     }
 
     @Test
-    public void getWordFrequenciesReturnsCorrectNumbersOfWordsForStringWithUpperCases() {
-        Text text = new Text("koT KOT   %SEma, ,,");
+    public void stringWithUpperCases() {
+        Text text = new Text("koT KOT SEma");
         Map<String, Integer> expectedMap = new HashMap<String, Integer>();
         expectedMap.put("kot", 2);
         expectedMap.put("sema", 1);
@@ -51,22 +50,17 @@ public class GetWordFrequenciesMethodTest {
     }
 
     @Test
-    public void getWordFrequenciesReturnsCorrectNumbersOfWordsForStringWithUniqueWords() {
-        Text text = new Text("kotkot, ,," + "rrr");
+    public void stringWithUniqueWords() {
+        Text text = new Text("kotkot rrr");
         Map<String, Integer> expectedMap = new HashMap<String, Integer>();
         expectedMap.put("kotkot", 1);
-        expectedMap.put("rrr1", 1);
-       // assertThat(expectedMap, CoreMatchers.is(CoreMatchers.equalTo(text.getWordFrequencies()))); // если строка матчится то тест проходит, НЕ матчитс не проходит
-      //  assertThat(expectedMap, CoreMatchers.allOf(hasEntry("hello",2)));
-        //assertEquals("krot",expectedMap, text.getWordFrequencies());
-        Set<String> words = text.getWordFrequencies().keySet();
-        assertThat(words, hasSize(2));
-        assertThat(words, hasItems("hello", "text"));
-//
+        expectedMap.put("rrr", 1);
+
+        assertEquals("krot", expectedMap, text.getWordFrequencies());
     }
 
     @Test
-    public void getWordFrequenciesReturnsEmptyMapIfStringWithoutWords() {
+    public void stringWithoutWords() {
         Text text = new Text("   ");
         Map<String, Integer> expectedMap = new HashMap<String, Integer>();
 
@@ -74,7 +68,7 @@ public class GetWordFrequenciesMethodTest {
     }
 
     @Test
-    public void getWordFrequenciesReturnsEmptyMapIfStringIsEmpty() {
+    public void stringIsEmpty() {
         Text text = new Text("");
         Map<String, Integer> expectedMap = new HashMap<String, Integer>();
 
@@ -82,10 +76,10 @@ public class GetWordFrequenciesMethodTest {
     }
 
 
-@Test (expected = NullPointerException.class)
-    public void nullTest( ){
+    @Test(expected = NullPointerException.class)
+    public void nullTest() {
         Text text = new Text(null);
-         text.getWordFrequencies();
+        text.getWordFrequencies();
     }
 
 }

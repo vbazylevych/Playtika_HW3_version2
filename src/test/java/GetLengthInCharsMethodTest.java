@@ -48,6 +48,7 @@ public class GetLengthInCharsMethodTest {
         int expectedResult = 0;
         assertEquals(result, expectedResult);
     }
+
     @Test(expected = NullPointerException.class)
     public void stringWithNull() {
         Text text = new Text(null);
