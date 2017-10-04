@@ -1,6 +1,10 @@
+import sun.misc.IOUtils;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
+
+import static org.apache.commons.io.IOUtils.*;
 
 
 public class Main {
@@ -22,7 +26,7 @@ public class Main {
 
                 try (BufferedReader reader = new BufferedReader(
                         new InputStreamReader(
-                                new FileInputStream(file.toString()), StandardCharsets.UTF_8))) {
+                                new FileInputStream(file.toString())))) {
                     String line;
 
                     while ((line = reader.readLine()) != null) {
@@ -39,14 +43,29 @@ public class Main {
                     stringBuilder = new StringBuilder();
 
                 } catch (IOException e) {
-                    System.out.println("I cant find such directory :(");
+                    System.out.println("I cant find such directory or can't read from it");
                 }
 
             }
-            System.out.println("Sum of frequency for ALL files:  " + generalSum);
+            System.out.println("Sum of frequency for ALL files:  " + generalSum + "\n");
         } else {
             System.out.println("It isn't directory");
         }
+
+
+        try {
+            InputStream input = new FileInputStream("input.txt");
+            OutputStream output = new FileOutputStream("output.txt");
+            copy(input, output, 1024);
+            input.close();
+            output.close();
+            System.out.println("FILE WAS COPIED!");
+        } catch (FileNotFoundException e) {
+            System.out.println("Cant find file");
+        } catch (IOException e) {
+            System.out.println("Can't copy");
+        }
+
     }
 
 
