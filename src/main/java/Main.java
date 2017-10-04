@@ -61,7 +61,7 @@ public class Main {
             output.close();
             System.out.println("FILE WAS COPIED!");
         } catch (FileNotFoundException e) {
-            System.out.println("Cant find file");
+            System.out.println("Cant find file " + e.getMessage());
         } catch (IOException e) {
             System.out.println("Can't copy");
         }
