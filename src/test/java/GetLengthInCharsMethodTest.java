@@ -1,7 +1,14 @@
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.Matchers;
+import org.junit.Assert;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.*;
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 
 public class GetLengthInCharsMethodTest {
@@ -12,16 +19,18 @@ public class GetLengthInCharsMethodTest {
         int result = text.getLengthInChars();
         int expectedResult = 3;
 
-        assertEquals(result, expectedResult);
+        assertThat(expectedResult, Matchers.is(result));
+
+
     }
 
     @Test
     public void stringWithSameWords() {
         Text text = new Text("kot kot");
-        int result = text.getLengthInChars();
-        int expectedResult = 6;
+        double result = text.getLengthInChars();
+        double expectedResult = 16;
 
-        assertEquals(result, expectedResult);
+        assertThat("same words processed incorrect",expectedResult, closeTo(result,10));
     }
 
     @Test
@@ -30,7 +39,7 @@ public class GetLengthInCharsMethodTest {
         int result = text.getLengthInChars();
         int expectedResult = 7;
 
-        assertEquals(result, expectedResult);
+        assertThat("String with uppercases processed incorrect", expectedResult, greaterThanOrEqualTo(result));
     }
 
     @Test
@@ -38,7 +47,7 @@ public class GetLengthInCharsMethodTest {
         Text text = new Text("");
         int result = text.getLengthInChars();
         int expectedResult = 0;
-        assertEquals(result, expectedResult);
+        assertThat(expectedResult, Matchers.equalTo(result));
     }
 
     @Test
@@ -46,7 +55,7 @@ public class GetLengthInCharsMethodTest {
         Text text = new Text(" ");
         int result = text.getLengthInChars();
         int expectedResult = 0;
-        assertEquals(result, expectedResult);
+        assertThat(expectedResult, CoreMatchers.not(1));
     }
 
     @Test(expected = NullPointerException.class)

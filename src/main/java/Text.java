@@ -52,9 +52,4 @@ public class Text {
         }
         return sum;
     }
-
-
-    static <T extends Text> void calculteSalary() {
-
-    }
 }
