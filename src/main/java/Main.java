@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) throws IOException {
 
 
-        Path directory = Paths.get("kot");
+        Path directory = Paths.get("testfiles");
 
         if (Files.exists(directory) && Files.isDirectory(directory)) {
 
