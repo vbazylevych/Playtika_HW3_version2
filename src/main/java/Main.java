@@ -31,13 +31,15 @@ public class Main {
                     }
 
                     TextUtils.printFileAtributes(file);
+
                     int oneFileSum = TextUtils.getOneFileSum(oneLineText);
                     generalSum = generalSum + oneFileSum;
                     System.out.println("Sum of frequency for file " + file.getFileName() + " -- " + oneFileSum + "\n");
+
                     stringBuilder = new StringBuilder();
+
                 } catch (IOException e) {
                     System.out.println("I cant find such directory :(");
-
                 }
 
             }
