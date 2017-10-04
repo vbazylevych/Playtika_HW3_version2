@@ -1,7 +1,16 @@
 
+import org.hamcrest.Matchers;
 import org.junit.Test;
 
+import java.sql.Array;
+import java.util.regex.Matcher;
+
+
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 
 public class GetTopWordsMethodTest {
 
@@ -10,9 +19,11 @@ public class GetTopWordsMethodTest {
 
         Text text = new Text("## ,123 яяя" + "\n" + ",art-, a, @kot! @#");
         String[] result = text.getTopWords(3);
-        String[] expectedResult = {"a", "art", "kot"};
 
-        assertEquals(result, expectedResult);
+        assertThat(result[0], anyOf(is("a"), is("b")));
+        assertThat(result[1], is("art"));
+        assertThat(result[2], allOf(containsString("ot"), startsWith("k")));
+        assertThat(result, arrayWithSize(3));
     }
 
     @Test
@@ -20,9 +31,8 @@ public class GetTopWordsMethodTest {
 
         Text text = new Text(" a ART Kot");
         String[] result = text.getTopWords(3);
-        String[] expectedResult = {"a", "art", "kot"};
 
-        assertEquals(result, expectedResult);
+        assertThat(result, arrayContainingInAnyOrder("kot", "a", "art"));
     }
 
     @Test
@@ -30,9 +40,8 @@ public class GetTopWordsMethodTest {
 
         Text text = new Text("art art kot kot");
         String[] result = text.getTopWords(2);
-        String[] expectedResult = {"art", "kot"};
 
-        assertEquals(result, expectedResult);
+        assertThat(result, arrayContaining("art", "kot"));
     }
 
     @Test
@@ -40,9 +49,8 @@ public class GetTopWordsMethodTest {
 
         Text text = new Text("begemot art a");
         String[] result = text.getTopWords(0);
-        String[] expectedResult = {};
 
-        assertEquals(result, expectedResult);
+        assertThat(result, emptyArray());
     }
 
     @Test
@@ -50,9 +58,8 @@ public class GetTopWordsMethodTest {
 
         Text text = new Text("begemot art a");
         String[] result = text.getTopWords(-1);
-        String[] expectedResult = {};
 
-        assertEquals(result, expectedResult);
+        assertThat(result, emptyArray());
     }
 
     @Test
@@ -60,9 +67,8 @@ public class GetTopWordsMethodTest {
 
         Text text = new Text("");
         String[] result = text.getTopWords(3);
-        String[] expectedResult = {};
 
-        assertEquals(result, expectedResult);
+        assertThat(result, emptyArray());
     }
 
     @Test(expected = NullPointerException.class)
@@ -70,9 +76,8 @@ public class GetTopWordsMethodTest {
 
         Text text = new Text(null);
         String[] result = text.getTopWords(3);
-        String[] expectedResult = {};
 
-        assertEquals(result, expectedResult);
+        assertThat(result, emptyArray());
     }
 
 }

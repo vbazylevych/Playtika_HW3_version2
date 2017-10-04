@@ -1,14 +1,9 @@
 
-import org.hamcrest.CoreMatchers;
-import org.hamcrest.Matchers;
-import org.junit.Assert;
 import org.junit.Test;
-
-import static org.hamcrest.CoreMatchers.*;
+import org.hamcrest.Matchers;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
+import org.hamcrest.CoreMatchers;
 
 
 public class GetLengthInCharsMethodTest {
