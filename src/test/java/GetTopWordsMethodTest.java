@@ -77,7 +77,6 @@ public class GetTopWordsMethodTest {
         Text text = new Text(null);
         String[] result = text.getTopWords(3);
 
-        assertThat(result, emptyArray());
     }
 
 }
