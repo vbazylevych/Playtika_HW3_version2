@@ -1,15 +1,8 @@
 
-import org.hamcrest.Matchers;
 import org.junit.Test;
-
-import java.sql.Array;
-import java.util.regex.Matcher;
-
-
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class GetTopWordsMethodTest {

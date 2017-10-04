@@ -1,19 +1,8 @@
-import com.sun.istack.internal.NotNull;
-import org.hamcrest.CoreMatchers;
 
-import org.hamcrest.Matchers;
-import org.hamcrest.core.AnyOf;
-import org.hamcrest.core.IsNull;
-import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
-
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class GetWordFrequenciesMethodTest {
@@ -24,8 +13,8 @@ public class GetWordFrequenciesMethodTest {
         Text text = new Text("kot ^   ...//%sema, ,,");
         Map<String, Integer> result = text.getWordFrequencies();
 
-        assertThat(result, hasEntry("kot",1));
-        assertThat(result, hasEntry("sema",1));
+        assertThat(result, hasEntry("kot", 1));
+        assertThat(result, hasEntry("sema", 1));
         assertThat(result.keySet(), hasSize(2));
 
     }
@@ -65,7 +54,7 @@ public class GetWordFrequenciesMethodTest {
         Text text = new Text("   ");
         Map<String, Integer> expectedMap = new HashMap<String, Integer>();
 
-        assertThat( text.getWordFrequencies().entrySet(), empty());
+        assertThat(text.getWordFrequencies().entrySet(), empty());
     }
 
     @Test
@@ -73,7 +62,7 @@ public class GetWordFrequenciesMethodTest {
         Text text = new Text("");
         Map<String, Integer> expectedMap = new HashMap<String, Integer>();
 
-        assertThat( text.getWordFrequencies().entrySet(), empty());
+        assertThat(text.getWordFrequencies().entrySet(), empty());
     }
 
 
