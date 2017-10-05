@@ -29,12 +29,12 @@ public class Main {
 
                     while ((line = reader.readLine()) != null) {
 
-                          stringBuilder.append(line).append(" ").toString();
+                        stringBuilder.append(line).append(" ").toString();
                     }
 
                     TextUtils.printFileAtributes(file);
 
-                                   } catch (IOException e) {
+                } catch (IOException e) {
                     System.out.println("I cant find such directory or can't read from it");
                 }
 
@@ -43,7 +43,7 @@ public class Main {
             Text text = new Text(stringBuilder.toString());
             Map<String, Integer> resultMap = text.getWordFrequencies();
 
-            System.out.println( resultMap);
+            System.out.println(resultMap);
         } else {
             System.out.println("It isn't directory");
         }
