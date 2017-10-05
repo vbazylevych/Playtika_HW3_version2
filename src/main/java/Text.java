@@ -26,7 +26,6 @@ public class Text {
         return strings;
     }
 
-
     public Map<String, Integer> getWordFrequencies() {
         String[] splitedArray = TextUtils.getArrayOfSplitedWords(TextUtils.clearText(text));
 
@@ -52,4 +51,5 @@ public class Text {
         }
         return sum;
     }
+
 }
