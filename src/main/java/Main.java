@@ -1,5 +1,7 @@
 import java.io.*;
 import java.nio.file.*;
+import java.util.Map;
+
 import static org.apache.commons.io.IOUtils.*;
 
 
@@ -27,23 +29,21 @@ public class Main {
 
                     while ((line = reader.readLine()) != null) {
 
-                        oneLineText = stringBuilder.append(line).append(" ").toString();
+                          stringBuilder.append(line).append(" ").toString();
                     }
 
                     TextUtils.printFileAtributes(file);
 
-                    int oneFileSum = TextUtils.getOneFileSum(oneLineText);
-                    generalSum = generalSum + oneFileSum;
-                    System.out.println("Sum of frequency for file " + file.getFileName() + " -- " + oneFileSum + "\n");
-
-                    stringBuilder = new StringBuilder();
-
-                } catch (IOException e) {
+                                   } catch (IOException e) {
                     System.out.println("I cant find such directory or can't read from it");
                 }
 
             }
-            System.out.println("Sum of frequency for ALL files:  " + generalSum + "\n");
+
+            Text text = new Text(stringBuilder.toString());
+            Map<String, Integer> resultMap = text.getWordFrequencies();
+
+            System.out.println( resultMap);
         } else {
             System.out.println("It isn't directory");
         }
