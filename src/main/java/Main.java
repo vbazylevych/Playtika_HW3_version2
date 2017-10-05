@@ -2,8 +2,6 @@ import java.io.*;
 import java.nio.file.*;
 import java.util.*;
 
-import static org.apache.commons.io.IOUtils.*;
-
 
 public class Main {
 
@@ -31,10 +29,13 @@ public class Main {
 
                 result = bigMap(result, frequency);
             }
+
             System.out.println(result);
+
         } else {
             System.out.println("It isn't directory");
         }
+
         myCopyFile("input.txt", "output.txt");
     }
 
